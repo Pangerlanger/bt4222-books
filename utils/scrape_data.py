@@ -1,3 +1,4 @@
+"""Script for scraping missing data from Google Books API"""
 import os
 import datetime
 import requests
@@ -6,9 +7,17 @@ import pandas as pd
 import numpy as np
 from typing import Dict
 
+"""
+Instructions: 
+
+1. Run script after replace API_KEY and START 
+2. Record index script stopped at and let the next person know
+
+"""
+
 # Replace with your API key
 API_KEY = "AIzaSyCFw_Swc8HiLh7qri1PLVRGDjChNfsMNjw"
-
+# Replace with updated index
 START = 0
 
 column_mapping = {
@@ -53,30 +62,31 @@ def update_missing_info(df: pd.DataFrame, row: pd.Series, row_idx: int, data: Di
 
 def scrape_data(df) -> None:
     counter = None
+    query_count = 0
     categories = []
     error_df = pd.DataFrame(columns=df.columns)
 
     try:
-        for idx, row in df.iterrows():
-            counter = idx
-            isbn = row['isbn']
+        while query_count <= 1000:
+            for idx, row in df.iterrows():
+                query_count += 1
+                counter = idx
+                isbn = row['isbn'] if row['isbn'] else row['isbn13']
 
-            url = f"https://www.googleapis.com/books/v1/volumes?q=isbn:{isbn}&key={API_KEY}"
-            print(url)
-            try:
-                response = requests.get(url)
-                data = response.json()['items'][0]['volumeInfo']
-                update_missing_info(df, row, idx, data)
+                url = f"https://www.googleapis.com/books/v1/volumes?q=isbn:{isbn}&key={API_KEY}"
+                print(url)
+                try:
+                    response = requests.get(url)
+                    data = response.json()['items'][0]['volumeInfo']
+                    update_missing_info(df, row, idx, data)
 
-                if 'categories' in data:
-                    categories.append(data['categories'])
-                else:
+                    if 'categories' in data:
+                        categories.append(data['categories'])
+                    else:
+                        categories.append([])
+                except:
+                    error_df.loc[len(df)] = row
                     categories.append([])
-            except:
-                error_df.loc[len(df)] = row
-                categories.append([])
-
-
     
     except Exception as e:
         print(f"Unexpected error occurred: {e}")
@@ -85,7 +95,6 @@ def scrape_data(df) -> None:
     df.to_csv('missing_update_df.csv', index=False)
     error_df.to_csv('error_df.csv', index=False)
     print(f"Script stopped running at index: {counter}")
-
 
     
 if __name__ == "__main__":
