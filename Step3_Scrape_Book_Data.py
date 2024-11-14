@@ -16,24 +16,7 @@ Instructions:
 """
 
 # Replace with your API key
-API_KEY = [#"AIzaSyCFw_Swc8HiLh7qri1PLVRGDjChNfsMNjw",
-           #"AIzaSyAOxUnS3WzsM1tuZkDnlopaBHQyPWcwmAs",
-           #"AIzaSyCalbnS5jeGOZP2VIEwpBI0upryR3MDMqA",
-           #"AIzaSyABJauHLzk90FlhBrMeU7mxG-cIWAt_zNs",
-           #"AIzaSyB3xqviQy-Xvo1WVleUXixX2JLEvrWXF2Q",
-           "AIzaSyC4OKjNyeXy5an3YF9Pmkuyh_xEWETm3Og",
-           "AIzaSyBacJhtWccHveVOj3JLYAC1OcJRqNDroCo",
-           "AIzaSyDIq-XHe0hLgi3_pNwSLItO0vNHnVezutI",
-           "AIzaSyBFCnJuM7eELiDsjS-LsDJMSYdFImvB2B8",
-           "AIzaSyBPLH0uoFtMpPcDlIuaAVVmPdmxRU_FeYM",
-           "AIzaSyCVFrp9gOsvG125UhRkKqRK47zIFt7t9l8",
-           "AIzaSyApwmU4CEBnrde4fSGTsY5u72xFweXG_kg",
-           #"AIzaSyAevtLyR3LyO9iNGqqckpCxC5qPfy4dQJY",
-           #"AIzaSyBukwnIGd5XOv5scP_xqsxIAwoWqtJsJpw",
-           #"AIzaSyCsZMzc2w0l437ULnR5rWRYa2G9eh9PvRQ",
-           #"AIzaSyBjb9uV6UMHpZLfNLA2ylV9vBhR1d1jb7g",
-           #"AIzaSyDSSARKpZrrm5_q8JlnGv-clnf-2xpeQEM",
-           #"AIzaSyCk-EWPCS1advNKcBstHvl9mUBLGQrWYR8"
+API_KEY = [""
            ]
 
 
